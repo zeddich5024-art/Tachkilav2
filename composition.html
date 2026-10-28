@@ -18,9 +18,9 @@
         <div>
             <nav>
                 <ul class="flex border-1 shadow-xl w-80 border-gray-100 bg-gray-500/8 rounded-xl p-3 justify-between">
-                    <li><a href="index.html" class="border-1 border-gray-100 bg-gray-500 bg-gray-500 rounded-xl pt-2 pb-2 p-3 hover:bg-green-400 text-gray-100 ">Effectif</a></li>
-                    <li><a href="#composition" class="border-1 border-gray-100 bg-green-500  bg-gray-500 rounded-xl pt-2 pb-2 p-3  text-gray-100">Composition</a></li>
-                    <li><a href="matchs.html" class="border-1 border-gray-100 bg-gray-500 bg-gray-500 rounded-xl pt-2 pb-2 p-3 hover:bg-green-400 text-gray-100">Matchs</a></li>
+                    <li><a href="index.html" class="border-1 border-gray-100 bg-gray-500 rounded-xl pt-2 pb-2 p-3 hover:bg-green-400 text-gray-100 ">Effectif</a></li>
+                    <li><a href="#composition" class="border-1 border-gray-100 bg-green-500  rounded-xl pt-2 pb-2 p-3  text-gray-100">Composition</a></li>
+                    <li><a href="matchs.html" class="border-1 border-gray-100 bg-gray-500  rounded-xl pt-2 pb-2 p-3 hover:bg-green-400 text-gray-100">Matchs</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,5 +31,86 @@
             <li class="text-red-500"><span class="text-base ">ATT</span></li>
         </ul>
     </header>
+    <main class="flex overflow-x-scroll  " id="main" >
+        <aside class="bg-slate-700 w-1/3 h-90% min-w-90 border-r-1 border-gray-100 sticky left-0 mb-0">
+            <div class="flex justify-between m-2 mt-7">
+                <p class="font-medium text-gray-50 ">Effectif</p>
+                
+                <p class="bg-slate-400 pt-1 pb-1 pr-4 pl-4 rounded-lg font-medium"><span id="nombre-joueurs">0</span> joueur(s)</p>
+            </div >
+            <p class="m-3 font-base text-slate-400 ">Cliquez sur un joueur placé pour voir sa case sur le terrain.<span class="text-orange-600"><i class="fa-solid fa-pen"></i></span>pour modifier,<span class="text-black"><i class="fa-solid fa-trash-can"></i></span>pour supprimer</p>
+            <div class="m-2 border-1 p-2 border-l-4 border-orange-600 rounded-lg">
+                <p id="message-vide" class="pl-6 text-slate-400 font-normal" >Aucun joueur pour le moment</p>
+                <div id="liste-joueurs" class="overflow-y-auto max-h-70"></div>
+            </div>   
+            </form>
+        </div>
+        <div class="absolute top-20 left-120 bg-slate-700 w-96 h-100 rounded-lg p-6 hidden" id="containerModifier">
+            <form  id="formModifier">
+                    <div class="flex justify-between">
+                        <p class="text-gray-100 font-medium ">Modifier un joueur</p>
+                        <i class="fa-solid fa-x text-sm text-gray-400 cursor-pointer" id="btnX2"></i>
+                    </div>
+                    <div class="mt-2 mb-4">
+                        <label for="nomModifier"  class="text-gray-400 font-medium text-sm">Nom complet</label>
+                        <br>
+                        <input type="text" id="nomModifier"  placeholder=" Ex. Ayoub Mansouri" class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                        
+                    </div>
+                    <p class="text-gray-400 font-medium text-sm">Poste</p>
+                    <div class="flex gap-6 flex-wrap mt-2 mb-4">
+                        <div>
+                            <input type="radio" name="posteModifier"  id="GaM" class="hidden peer" value="Gardien"  > 
+                            <label for="GaM" class="bg-orange-500/9 cursor-pointer  peer-checked:bg-orange-500 hover:bg-orange-500 p-1 pl-3 pr-17 rounded-lg border-1 border-gray-400 text-gray-100 "> Gardien</label>   
+                        </div>
+                        <div>
+                            <input type="radio"  name="posteModifier"  id="DéM" class="hidden peer" value="Défenseur"> 
+                            <label for="DéM" class="bg-green-500/9 cursor-pointer  peer-checked:bg-green-500 hover:bg-green-500 p-1 pl-3 pr-17 rounded-lg border-1 border-gray-400 text-gray-100 "> Défeneur</label>    
+                        </div>
+                        <div>
+                            <input type="radio"  name="posteModifier"  id="MiM" class="hidden peer" value="Milieu">
+                            <label for="MiM" class="bg-blue-500/9 cursor-pointer  peer-checked:bg-blue-500 hover:bg-blue-500 p-1 pl-3 pr-17 rounded-lg border-1 border-gray-400 text-gray-100 "> Milieau</label>   
+                        </div>
+                        <div>
+                            <input type="radio" name="posteModifier"  id="AttM" class="hidden peer" value="Attaquant">
+                            <label for="AttM" class="bg-red-500/9 cursor-pointer  peer-checked:bg-red-500 hover:bg-red-500 p-1 pl-3 pr-17 rounded-lg border-1 border-gray-400 text-gray-100 "> Attaquant</label>     
+                        </div>
+                       
+                    </div>
+                    
+                    <p class="text-gray-400 font-medium text-sm mb-3">Numéro(1à99)</p>
+                    <input type="number"  id="numeroModifier"  class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                    
+                    <div class="absolute right-4 bottom-4">
+                        <button type="button" id="btnAnnuler"  class="bg-slate-400 rounded-lg w-20 border-1 border-gray-200 p-1 cursor-pointer">Annuler</button>
+                        <button type="submit" class="bg-green-500 rounded-lg w-20 p-1 border-1 border-gray-200 cursor-pointer">Modifier</button>
+                    </div>
+
+                    
+            </form>
+            </div>
+        </aside>
+        <section class="bg-slate-950 min-w-220 h-90% mb-0 ">
+            
+            <div class="terrain ">
+                <div class="position-joueur">
+                    <div class="GB border-2 border-dashed border-orange-500 rounded-full bg-orange-500/30 flex"><span class="self-center">GB</span></div>
+                    <div class="DG border-2 border-dashed border-blue-500 rounded-lg bg-blue-500/30  ">DG</div>
+                    <div class="DC1 border-2 border-dashed border-blue-500 rounded-lg bg-blue-500/30 ">DC</div>
+                    <div class="DC2 border-2 border-dashed border-blue-500 rounded-lg bg-blue-500/30  ">DC</div>
+                    <div class="DD border-2 border-dashed border-blue-500 rounded-lg bg-blue-500/30 ">DD</div>
+                    <div class="MG border-2 border-dashed border-green-500 rounded-lg bg-green-500/30 ">MG</div>
+                    <div class="MC1 border-2 border-dashed border-green-500 rounded-lg bg-green-500/30">MC</div>
+                    <div class="MC2 border-2 border-dashed border-green-500 rounded-lg bg-green-500/30">MC</div>
+                    <div class="MD border-2 border-dashed border-green-500 rounded-lg bg-green-500/30">MD</div>
+                    <div class="BU1 border-2 border-dashed border-red-500 rounded-lg bg-red-500/30">BU</div>
+                    <div class="BU2 border-2 border-dashed border-red-500 rounded-lg bg-red-500/30">BU</div>
+                </div>
+            </div>
+            <p class="text-xs/8  ml-35 text-gray-500">Gardien à gauche --&#62 attaque à droite. Choisissez la position de chaque joueur dans la liste. Joueurs placés   <span id="nombre-terrain">   0</span>/11
+            </p>
+            
+        </section>
+    </main>
 </body>
 </html>
