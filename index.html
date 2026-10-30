@@ -33,7 +33,7 @@
     </header>
     <main class="bg-gray-800 h-dvh" id="index">
            <section >
-                <div class="flex justify-between items-center pl-6 pr-6 pt-8 mb-4   ">
+                <div class="flex justify-between items-center pl-6 pr-6 pt-8 mb-4">
                     <div>
                         <h2 class="font-medium text-gray-50 text-3xl">Effectif</h2>
                         <p class="text-gray-400 text-lg font-medium">Gérez votre effectif et vos joueurs</p>
@@ -82,10 +82,34 @@
                     </div>
                 </form>
                 </div>
-                <div class="border-1 border-gray-950 rounded-lg p-6 bg-slate-500/20">
-                    <form>
-                        <input name="fsrch" id="fsrch" class="w-200 border-1 border-gray-950 bg-slate-400 h-8 rounded-lg">
-                    </form>
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] ml-3 mr-3 ">
+                    <article class=" border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start">TOTAL EFFECTIF</p>
+                        <p class="text-3xl font-bold text-gray-50">14</p>
+                    </article >
+                    <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start ">EN FORME</p>
+                        <p class="text-3xl font-bold text-green-700">12</p>
+                    </article>
+                    <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start ">BLESSES</p>
+                        <p class="text-3xl font-bold text-red-700">2</p>
+                    </article>
+                    <article class="border-1 border-gray-950 rounded-lg p-2 bg-slate-400/20 m-4 flex flex-col gap-1">
+                        <p class="font-medium text-sm text-gray-400 self-start ">AGE MOYEN</p>
+                        <p class="text-3xl font-bold text-gray-50">26.1 ans</p>
+                    </article>
+                </div>
+                <div class="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mr-6 flex gap-2">
+                    <input name="fsrch" id="fsrch" class="w-3/4 border-1 border-gray-950 bg-gray-950/25 h-10 rounded-lg">
+                    <div class="p-1 pl-2 pr-2 border-1 border-gray-950 bg-gray-950/25  rounded-lg w-1/4">
+                        <button id="Tous" class=" p-1 w-1/5 bg-green-800 rounded-lg font-semibold text-gray-400">Tous</button>
+                        <button id="GB" class=" p-1 w-1/6 bg-green-800 rounded-lg font-semibold text-gray-400">GB</button>
+                        <button id="DEF" class=" p-1 w-1/6 bg-green-800 rounded-lg font-semibold text-gray-400">DEF</button>
+                        <button id="MIL" class=" p-1 w-1/5 bg-green-800 rounded-lg font-semibold text-gray-400">MIL</button>
+                        <button id="ATT" class=" p-1  w-1/5 bg-green-800 rounded-lg font-semibold text-gray-400">ATT</button>
+                    </div>
+                    
                 </div>
            </section>
     </main>
