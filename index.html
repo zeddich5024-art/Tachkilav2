@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TACHKILA</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="Tachkila.js" defer></script>
+    <script type="module" src="Effectif.js" ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="Tachkila.css">
 </head>
@@ -31,6 +31,63 @@
             <li class="text-red-500"><span class="text-base ">ATT</span></li>
         </ul>
     </header>
-
+    <main class="bg-gray-800 h-dvh" id="index">
+           <section >
+                <div class="flex justify-between items-center pl-6 pr-6 pt-8 mb-4   ">
+                    <div>
+                        <h2 class="font-medium text-gray-50 text-3xl">Effectif</h2>
+                        <p class="text-gray-400 text-lg font-medium">Gérez votre effectif et vos joueurs</p>
+                    </div>
+                    <button class="ajouter cursor-pointer bg-green-700 w-85 m-2 mt-6 p-2 mb-4 rounded-lg font-medium text-gray-50" id="Ajouter">+Ajouter un joueur</button>
+                </div>
+                <div class="form  absolute top-20 left-120 bg-slate-700 w-96 rounded-lg h-95 p-6 hidden" id="containerAjouter">
+                <form  id="form-joueur">
+                    <div class="flex justify-between">
+                        <p class="text-gray-100 font-medium " >Ajouter un joueur</p>
+                        <i class="fa-solid fa-x text-sm text-gray-400 cursor-pointer" id="btnX"></i>
+                    </div>
+                    <div class="mt-2 mb-4">
+                        <label for=""  class="text-gray-400 font-medium text-sm">Nom complet</label>
+                        <br>
+                        <input type="text" id="nom-joueur"  placeholder=" Ex. Ayoub Mansouri" class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                        <p id="errornom" class="text-sm text-red-700"></p>
+                    </div>
+                    <p class="text-gray-400 font-medium text-sm">Poste</p>
+                    <div class="flex gap-6 flex-wrap mt-2 mb-4">
+                        <div>
+                            <input type="radio" name="poste"  id="br" class="hidden peer" value="Gardien" > 
+                            <label for="br" class="bg-orange-500/9 cursor-pointer  peer-checked:bg-orange-500 hover:bg-orange-500 p-1 pl-3 pr-17 rounded-lg border-1 border-orange-500 text-gray-100 "> Gardien</label>   
+                        </div>
+                        <div>
+                            <input type="radio"  name="poste"  id="Dé" class="hidden peer" value="Défenseur"> 
+                            <label for="Dé" class="bg-blue-500/9 p-1 pl-3 pr-17 cursor-pointer peer-checked:bg-blue-500  hover:bg-blue-500 rounded-lg border-1 border-blue-500 text-gray-100 "> Défeneur</label>    
+                        </div>
+                        <div>
+                            <input type="radio"  name="poste"  id="Mi" class="hidden peer" value="Milieu">
+                            <label for="Mi" class="bg-green-500/9 p-1 pl-3 pr-17 peer-checked:bg-green-500 rounded-lg border-1 cursor-pointer  hover:bg-green-500 border-green-500 text-gray-100 "> Milieau</label>   
+                        </div>
+                        <div>
+                            <input type="radio" name="poste"  id="Att" class="hidden peer" value="Attaquant">
+                            <label for="Att" class="bg-red-500/9 p-1 pl-3 pr-17 rounded-lg border-1 cursor-pointer peer-checked:bg-red-500 hover:bg-red-500 border-red-500 text-gray-100 " > Attaquant</label>     
+                        </div>
+                       
+                    </div>
+                    <p id="errorposte" class="text-sm text-red-700"></p>
+                    <p class="text-gray-400 font-medium text-sm mb-3">Numéro(1à99)</p>
+                    <input type="number"  id="numero-joueur"  class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                    <p id="errornumber" class="text-sm text-red-700"></p>
+                    <div class="absolute right-4 bottom-4">
+                        <button type="button" id="annuler"  class="bg-slate-400 rounded-lg w-20 border-1 border-gray-200 p-1 cursor-pointer">Annuler</button>
+                        <button type="submit" class="bg-green-500 rounded-lg w-20 p-1 border-1 border-gray-200 cursor-pointer">Ajouter</button>
+                    </div>
+                </form>
+                </div>
+                <div class="border-1 border-gray-950 rounded-lg p-6 bg-slate-500/20">
+                    <form>
+                        <input name="fsrch" id="fsrch" class="w-200 border-1 border-gray-950 bg-slate-400 h-8 rounded-lg">
+                    </form>
+                </div>
+           </section>
+    </main>
 </body>
 </html>
