@@ -1,2 +1,2 @@
 
-export let joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
+export let Joueurs = JSON.parse(localStorage.getItem("Joueurs")) || [];

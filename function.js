@@ -1,5 +1,6 @@
+
 // create les carts des joueurs
-export function creatCart(carte,ligne,informations,numero,nom,poste,actions,btnModifier,btnSupprimer,listposition,joueur){
+export function creatCart(carte,ligne,informations,numero,nom,poste,actions,btnModifier,btnSupprimer,btnCaptain,joueur){
         
         carte.className = "p-3 border-1 border-gray-800 shadow-xl/30 bg-green-600/8 rounded-lg mb-4";
 
@@ -34,24 +35,11 @@ export function creatCart(carte,ligne,informations,numero,nom,poste,actions,btnM
         btnSupprimer.className = "text-black  hover:text-red-700 cursor-pointer";
         btnSupprimer.innerHTML = `<i class="fa-solid fa-trash"></i>`;
         btnSupprimer.title = "Supprimer";
+          
 
-        // select
+        btnCaptain.className ="text-white cursor-pointer rounded-full hover:bg-purple-800 "
+        btnCaptain.textContent = "C";
         
-        listposition.className = " w-70 border-1 border-gray-500 shadow-xl/30 bg-gray-400/8 h-8 mt-4 rounded-lg";
-        listposition.innerHTML = `
-            <option value="banc">Sur le banc</option>
-            <option value="GB">GB-Gardien</option>
-            <option value="DG">DG-Défenseur gauche</option>
-            <option value="DC1">DC-Défenseur central 1</option>
-            <option value="DC2">DC-Défenseur central 2</option>
-            <option value="DD">DD-Défenseur droit</option>
-            <option value="MG">MG-Milieu gauche</option>
-            <option value="MC1">MC-Milieu central 1</option>
-            <option value="MC2">MC-Milieu central 2</option>
-            <option value="MD">MD-Milieu droit</option>
-            <option value="BU1">BU-Buteur 1</option>
-            <option value="BU2">BU-Buteur 2</option>
-                `;
 }
 
 // validation de form ajouter
