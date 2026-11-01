@@ -8,41 +8,44 @@ btnX(form);
 const formJoueur = document.querySelector("#form-joueur");
 const nomJoueur = document.querySelector("#nom-joueur");
 const numeroJoueur = document.querySelector("#numero-joueur");
+const ageJoueur =document.querySelector("#age-joueur")
 let idjoueur = Joueurs.length;
 const container=document.querySelector("#Container");
-import { creatCart,supprimer,validationform } from "./function.js";
+import { supprimer,validationform } from "./function.js";
 formJoueur.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const nom = nomJoueur.value.trim();
     const numero = Number(numeroJoueur.value);
-
-    const posteJoueur = document.querySelector('input[name="poste"]:checked');
+    const age = Number(ageJoueur.value);
+    const posteJoueur = document.querySelector("#poste-joueur");
+    const statue=document.querySelector("#status-joueur")
     // Validation de Form
     const errorNom = document.querySelector("#errornom");
     const errorNumber = document.querySelector("#errornumber");
     const errorPoste = document.querySelector("#errorposte")
-    validationform(errorNom,errorNumber,errorPoste,nom,numero,posteJoueur);
-
-    const numeroExiste = joueurs.some((joueur) => joueur.numero === numero);
-    if (numeroExiste) {
-        alert("Ce numéro est déjà utilisé!:")
+    const errorAge =document.querySelector("#errorage");
+    if(!validationform(errorNom,errorNumber,errorPoste,nom,numero,age,posteJoueur,errorAge,Joueurs)){
         return;
-    }
+    };
+
+    
 
     const nouveauJoueur = {
         id: idjoueur,
         nom: nom,
         poste: posteJoueur.value,
         numero: numero,
+        age: age,
+        status: statue.value,  
         position: ""
     };
 
     Joueurs.push(nouveauJoueur);
     localStorage.setItem("joueurs", JSON.stringify(Joueurs));
     idjoueur++;
-    console.log(joueurs);
+    console.log(Joueurs);
     formJoueur.reset();
-    afficherJoueurs();
+
     form.classList.add("hidden");
 });

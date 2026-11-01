@@ -43,8 +43,8 @@ export function creatCart(carte,ligne,informations,numero,nom,poste,actions,btnM
 }
 
 // validation de form ajouter
-export function validationform(errorNom,errorNumber,errorPoste,nom,numero,posteJoueur){
-    let valide = true;
+export function validationform(errorNom,errorNumber,errorPoste,nom,numero,age,posteJoueur,errorAge,Joueurs){
+      let valide = true;
     if (nom.length == 0) {
         errorNom.textContent = "Le nom est requis.";
         valide = false;
@@ -59,28 +59,48 @@ export function validationform(errorNom,errorNumber,errorPoste,nom,numero,posteJ
         errorNumber.textContent = "Le numero est requis.";
         valide = false;
     }
-    else if (numero < 1) {
-        errorNumber.textContent = "Le numero doit étre supérieure ou égale 1";
-        valide = false;
+    else if(numero<1){
+        errorNumber.textContent="Le numero doit étre supérieure ou égale 1";
+        valide=false;
     }
-    else if (numero > 99) {
-        errorNumber.textContent = "Le numero doit étre inférieure ou égale 99";
-        valide = false;
+    else if(numero>99){
+        errorNumber.textContent="Le numero doit étre inférieure ou égale 99";
+        valide=false;
     }
-    else {
+    else{
         errorNumber.textContent = "";
     }
-    if (!posteJoueur) {
-        errorPoste.textContent = "Veuillez choisir un poste";
+    if (age == "") {
+        errorAge.textContent = "L'age est requis.";
         valide = false;
     }
-    else {
-        errorPoste.textContent = "";
+    else if(age<14){
+        errorAge.textContent="l'age trée petit";
+        valide=false;
+    }
+    else if(age>50){
+        errorAge.textContent="l'age trée ground ";
+        valide=false;
+    }
+    else{
+        errorAge.textContent = "";
+    }
+    if(posteJoueur.value == ""){
+        errorPoste.textContent ="Veuillez choisir un poste";
+        valide=false;
+    }
+    else{
+        errorPoste.textContent="";
     }
     if (!valide) {
-        return;
+        return false;;
     }
-
+    const numeroExiste = Joueurs.some((joueur) => joueur.numero === numero);
+        if (numeroExiste) {
+            alert("Ce numéro est déjà utilisé!:")
+            return false;
+        }else{return true;}
+        
 }
 
 // button ajouter
