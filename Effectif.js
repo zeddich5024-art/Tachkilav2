@@ -237,7 +237,6 @@ function paginate(Joueurs, afficherJoueurs) {
 
     // Créer les boutons
     pagination.innerHTML = "";
-
     for (let i = 1; i <= totalPages; i++) {
 
         const button = document.createElement("button");
