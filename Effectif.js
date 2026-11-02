@@ -294,6 +294,13 @@ filterposteMIL.addEventListener("click",()=>{
     paginate(filterMIL, afficherJoueurs);
 })
 
+// filtre poste ATT
+const filterposteATT=document.querySelector("#ATT");
+filterposteATT.addEventListener("click",()=>{
+    let filterATT=Joueurs.filter(joueur=>joueur.poste === "ATT");
+    afficherJoueurs(filterATT);
+    paginate(filterATT, afficherJoueurs);
+})
 
 
 
