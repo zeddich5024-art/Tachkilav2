@@ -9,8 +9,11 @@ const formJoueur = document.querySelector("#form-joueur");
 const nomJoueur = document.querySelector("#nom-joueur");
 const numeroJoueur = document.querySelector("#numero-joueur");
 const ageJoueur =document.querySelector("#age-joueur")
+const posteJoueur = document.querySelector("#poste-joueur");
+const statue=document.querySelector("#status-joueur")
 const nombreJoueurs = document.querySelector("#nombre-joueurs");
 let idJoueur = Joueurs.length;
+let editingId=null;
 const container=document.querySelector("#Container");
 import {validationform } from "./function.js";
 formJoueur.addEventListener("submit", (event) => {
@@ -19,20 +22,33 @@ formJoueur.addEventListener("submit", (event) => {
     const nom = nomJoueur.value.trim();
     const numero = Number(numeroJoueur.value);
     const age = Number(ageJoueur.value);
-    const posteJoueur = document.querySelector("#poste-joueur");
-    const statue=document.querySelector("#status-joueur")
+   
     // Validation de Form
     const errorNom = document.querySelector("#errornom");
     const errorNumber = document.querySelector("#errornumber");
     const errorPoste = document.querySelector("#errorposte")
     const errorAge =document.querySelector("#errorage");
-    if(!validationform(errorNom,errorNumber,errorPoste,nom,numero,age,posteJoueur,errorAge,Joueurs)){
+    if(!validationform(errorNom,errorNumber,errorPoste,nom,numero,age,posteJoueur,errorAge,Joueurs,editingId)){
         return;
     };
-
     
-
-    const nouveauJoueur = {
+    if(editingId !== null){
+        // mode Modifiction
+        const index =Joueurs.findIndex(joueur =>joueur .id === editingId);
+        Joueurs[index]={
+            ...Joueurs[index],
+            nom:nom,
+            numero:numero,
+            age:age,
+            poste:posteJoueur.value,
+            status:statue.value,
+            position: ""
+        };
+        editingId=null;
+    }
+    else{
+        // Mode Ajouter
+        const nouveauJoueur = {
         id: idJoueur,
         nom: nom,
         poste: posteJoueur.value,
@@ -43,8 +59,13 @@ formJoueur.addEventListener("submit", (event) => {
     };
 
     Joueurs.push(nouveauJoueur);
+     idJoueur++;
+}
+    
+
+    
     localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
-    idJoueur++;
+   
     formJoueur.reset();
     afficherJoueurs();
     En_forme();
@@ -157,6 +178,15 @@ function afficherJoueurs(joueursPage = Joueurs) {
                 nombreJoueurs.textContent = Joueurs.length;
                 paginate(Joueurs, afficherJoueurs)
         });
+        btnModifier.addEventListener("click", ()=>{
+            editingId=joueur.id;
+            nomJoueur.value = joueur.nom;
+            numeroJoueur.value = joueur.numero;
+            posteJoueur.value=joueur.poste;
+            ageJoueur.value=joueur.age;
+            statue.value=joueur.status;
+            form.classList.remove("hidden");
+        })
         
         details.append(nom, poste);
         informations.append(numero, details);
@@ -212,6 +242,7 @@ function paginate(Joueurs, afficherJoueurs) {
         pagination.appendChild(button);
     }
 }
+
 paginate(Joueurs, afficherJoueurs);
 En_forme();
 moyenage();
