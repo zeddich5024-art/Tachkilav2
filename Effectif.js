@@ -278,6 +278,14 @@ filterposteGB.addEventListener("click",()=>{
     paginate(filterGB, afficherJoueurs);
 })
 
+// filtre poste DEF
+const filterposteDEF=document.querySelector("#DEF");
+filterposteDEF.addEventListener("click",()=>{
+    let filterDEF=Joueurs.filter(joueur=>joueur.poste === "DEF");
+    afficherJoueurs(filterDEF);
+    paginate(filterDEF, afficherJoueurs);
+})
+
 
 
 
