@@ -286,6 +286,13 @@ filterposteDEF.addEventListener("click",()=>{
     paginate(filterDEF, afficherJoueurs);
 })
 
+// filtre poste MIL
+const filterposteMIL=document.querySelector("#MIL");
+filterposteMIL.addEventListener("click",()=>{
+    let filterMIL=Joueurs.filter(joueur=>joueur.poste === "MIL");
+    afficherJoueurs(filterMIL);
+    paginate(filterMIL, afficherJoueurs);
+})
 
 
 
