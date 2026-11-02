@@ -62,8 +62,10 @@ export function validationform(errorNom,errorNumber,errorPoste,nom,numero,age,po
 
 // button ajouter
 export function ajouter(form){
+    const formJoueur=document.querySelector("#form-joueur")
     const afficherform = document.querySelector(".ajouter");
     afficherform.addEventListener("click", () => {
+    formJoueur.reset();
     form.classList.remove("hidden");
 })
 }
@@ -74,6 +76,7 @@ export function annuler(form){
     annulerForm.addEventListener("click", () => {
     form.classList.add("hidden");
     })
+    
 }
 
 // button X

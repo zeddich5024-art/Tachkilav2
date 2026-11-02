@@ -43,8 +43,9 @@ formJoueur.addEventListener("submit", (event) => {
             poste:posteJoueur.value,
             status:statue.value,
             
-        };
+        };annuler(form);
         editingId=null;
+        
     }
     else{
         // Mode Ajouter
@@ -61,14 +62,14 @@ formJoueur.addEventListener("submit", (event) => {
 
     Joueurs.push(nouveauJoueur);
      idJoueur++;
-}
+   }
     
 
     
     localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
    
     formJoueur.reset();
-    afficherJoueurs();
+    paginate(Joueurs,afficherJoueurs)
     En_forme();
     moyenage();
     form.classList.add("hidden");
@@ -181,7 +182,9 @@ function afficherJoueurs(joueursPage = Joueurs) {
                 carte.remove();
                 localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
                 nombreJoueurs.textContent = Joueurs.length;
-                paginate(Joueurs, afficherJoueurs)
+                paginate(Joueurs, afficherJoueurs);
+                En_forme();
+                moyenage();
         });
         btnModifier.addEventListener("click", ()=>{
             editingId=joueur.id;
@@ -264,6 +267,15 @@ searchtext.addEventListener("input",function(){
     let searchValue=this.value.toLowerCase();
     let filteredJoueur=Joueurs.filter(joueur=>joueur.nom.toLowerCase().includes(searchValue));
     afficherJoueurs(filteredJoueur);
+    paginate(filteredJoueur, afficherJoueurs)
+})
+
+// filtre poste GB
+const filterposteGB=document.querySelector("#GB");
+filterposteGB.addEventListener("click",()=>{
+    let filterGB=Joueurs.filter(joueur=>joueur.poste === "GB");
+    afficherJoueurs(filterGB);
+    paginate(filterGB, afficherJoueurs);
 })
 
 
@@ -280,5 +292,6 @@ searchtext.addEventListener("input",function(){
 
 
 paginate(Joueurs, afficherJoueurs);
+
 En_forme();
 moyenage();
