@@ -302,6 +302,12 @@ filterposteATT.addEventListener("click",()=>{
     paginate(filterATT, afficherJoueurs);
 })
 
+// affichage des tous joueurs
+const tousjoueurs=document.querySelector("#Tous");
+tousjoueurs.addEventListener("click",()=>{
+    afficherJoueurs(Joueurs);
+    paginate(Joueurs, afficherJoueurs);
+})
 
 
 
