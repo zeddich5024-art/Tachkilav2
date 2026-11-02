@@ -256,6 +256,29 @@ function paginate(Joueurs, afficherJoueurs) {
     }
 }
 
+
+
+// RECHERCHE
+const searchtext=document.querySelector("#text-search");
+searchtext.addEventListener("input",function(){
+    let searchValue=this.value.toLowerCase();
+    let filteredJoueur=Joueurs.filter(joueur=>joueur.nom.toLowerCase().includes(searchValue));
+    afficherJoueurs(filteredJoueur);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 paginate(Joueurs, afficherJoueurs);
 En_forme();
 moyenage();
