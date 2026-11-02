@@ -42,7 +42,7 @@ formJoueur.addEventListener("submit", (event) => {
             age:age,
             poste:posteJoueur.value,
             status:statue.value,
-            position: ""
+            
         };
         editingId=null;
     }
@@ -55,7 +55,8 @@ formJoueur.addEventListener("submit", (event) => {
         numero: numero,
         age: age,
         status: statue.value,  
-        position: ""
+        position: "",
+        capitaine:false
     };
 
     Joueurs.push(nouveauJoueur);
@@ -170,6 +171,10 @@ function afficherJoueurs(joueursPage = Joueurs) {
         if(joueur.status==="Blessé"){
             status.className="bg-red-600/30 pl-1 text-red-600 w-13 rounded-lg text-sm font-medium";
         }
+        if(joueur.capitaine){
+            btnCaptain.classList.add("bg-purple-700","text-white")
+            carte.classList.add("border-y-2","border-r-2","border-purple-700")
+        }
         btnSupprimer.addEventListener("click", () => {
                 const index = Joueurs.indexOf(joueur);
                 Joueurs.splice(index, 1);
@@ -188,6 +193,14 @@ function afficherJoueurs(joueursPage = Joueurs) {
             form.classList.remove("hidden");
         })
         
+        btnCaptain.addEventListener("click",()=>{
+            Joueurs.forEach((joueur)=>{
+                joueur.capitaine=false;
+            });
+            joueur.capitaine=true;
+            localStorage.setItem("Joueurs",JSON.stringify(Joueurs));
+            paginate(Joueurs,afficherJoueurs);
+        })
         details.append(nom, poste);
         informations.append(numero, details);
         actions.append(btnCaptain,btnModifier, btnSupprimer);
