@@ -59,10 +59,10 @@
                     <div >
                        <select name="" id="poste-joueur"  class="flex gap-6 w-1/1 bg-slate-900 border-1 border-gray-50 text-gray-50 h-8 rounded-lg  flex-wrap mt-2 mb-4">
                         <option value="" disabled selected hidden>Choisir un poste</option>
-                        <option value="Ga">Gardien</option>
-                        <option value="Dé">Défenseur</option>
-                        <option value="Mi">Milieau</option>
-                        <option value="Att">Attaquant</option>
+                        <option value="GB">Gardien</option>
+                        <option value="DEF">Défenseur</option>
+                        <option value="MIL">Milieau</option>
+                        <option value="ATT">Attaquant</option>
                        </select>
                        <p id="errorposte" class="text-sm text-red-700"></p>
                     </div>
@@ -97,19 +97,19 @@
                 <div class="grid grid-cols-[1fr_1fr_1fr_1fr] ml-3 mr-3 ">
                     <article class=" border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start">TOTAL EFFECTIF</p>
-                        <p class="text-3xl font-bold text-gray-50">14</p>
+                        <p class="text-3xl font-bold text-gray-50" id="nombre-joueurs"></p>
                     </article >
                     <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start ">EN FORME</p>
-                        <p class="text-3xl font-bold text-green-700">12</p>
+                        <p class="text-3xl font-bold text-green-700" id="nomber-forme"></p>
                     </article>
                     <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start ">BLESSES</p>
-                        <p class="text-3xl font-bold text-red-700">2</p>
+                        <p class="text-3xl font-bold text-red-700" id="nomber-blessé"></p>
                     </article>
                     <article class="border-1 border-gray-950 rounded-lg p-2 bg-slate-400/20 m-4 flex flex-col gap-1">
                         <p class="font-medium text-sm text-gray-400 self-start ">AGE MOYEN</p>
-                        <p class="text-3xl font-bold text-gray-50">26.1 ans</p>
+                        <p class="text-3xl font-bold text-gray-50"><span id="moyen-age"></span> ans</p>
                     </article>
                 </div>
                 <div class="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mr-6 flex gap-2">
@@ -123,26 +123,8 @@
                     </div>
                 </div>
                 <div id="Container" class="grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[1fr-1fr] gap-2 m-5">
-                    <div class="border-l-4 rounded-lg border-green-500 bg-slate-900 shadow-xl/30">
-                        <div class="flex gap-3 m-3 ">
-                            <p class="rounded-full w-8 h-8 border-2 border-green-600 self-center "><span class=" text-green-600 font-medium  ml-2 text-xl">1</span></p>
-                            <div class="">
-                                <p class="text-xl font-medium text-gray-50">zakaria eddich</p>
-                                <p class="bg-green-500/30 pl-1 text-green-500 rounded-lg w-8 font-medium text-sm">MIL</p>
-                            </div>
-                        </div>
-                        <p class="ml-3 font-medium text-gray-500 text-sm">Age: <span>22</span> ans</p>
-                        <div class="m-3 flex justify-between">
-                            <p class="bg-green-500/30 pl-1 text-green-500 w-17 rounded-lg text-sm font-medium">En forme</p>
-                            <div class="flex gap-2">
-                                <button class="border-1 rounded-lg  border-gray-50 w-7"><span class="text-gray-400 font-medium">C</span></button>
-                                <button><i class="fa-solid fa-pen"></i></button>
-                                <button><i class="fa-solid fa-trash-can"></i></button>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                <div id="pagination" class="flex justify-center gap-2 mt-6"></div>
            </section>
     </main>
 </body>

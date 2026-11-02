@@ -1,47 +1,4 @@
 
-// create les carts des joueurs
-export function creatCart(carte,ligne,informations,numero,nom,poste,actions,btnModifier,btnSupprimer,btnCaptain,joueur){
-        
-        carte.className = "p-3 border-1 border-gray-800 shadow-xl/30 bg-green-600/8 rounded-lg mb-4";
-
-    
-        ligne.className = "flex gap-5 justify-between";
-
-       
-        informations.className = "flex gap-5";
-
-        
-        numero.className = "bg-slate-900 text-orange-600 border border-orange-600 px-5 py-3 rounded-full font-medium";
-        numero.textContent = joueur.numero;
-
-        
-        
-        nom.className = "font-medium text-gray-50";
-        nom.textContent = joueur.nom;
-
-        
-        poste.className = "font-medium text-orange-600";
-        poste.textContent = joueur.poste;
-        // Icônes Modifier et Supprimer
-        
-        actions.className = "flex gap-3 items-start";
-
-        
-        btnModifier.className = "text-orange-600 hover:text-blue-600 cursor-pointer";
-        btnModifier.innerHTML = '<i class="fa-solid fa-pen"></i>';
-        btnModifier.title = "Modifier";
-
-        
-        btnSupprimer.className = "text-black  hover:text-red-700 cursor-pointer";
-        btnSupprimer.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-        btnSupprimer.title = "Supprimer";
-          
-
-        btnCaptain.className ="text-white cursor-pointer rounded-full hover:bg-purple-800 "
-        btnCaptain.textContent = "C";
-        
-}
-
 // validation de form ajouter
 export function validationform(errorNom,errorNumber,errorPoste,nom,numero,age,posteJoueur,errorAge,Joueurs){
       let valide = true;
@@ -170,10 +127,10 @@ export function btnmodifier(){
 
 // bottun supprimer
 export function supprimer(carte) {
-    joueurs.forEach((joueur)=>{
-        const index = joueurs.indexOf(joueur);
-        joueurs.splice(index, 1);
+    Joueurs.forEach((joueur)=>{
+        const index = Joueurs.indexOf(joueur);
+        Joueurs.splice(index, 1);
         carte.remove();
-        localStorage.setItem("joueurs", JSON.stringify(joueurs));
+        localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
       })
 }
