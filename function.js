@@ -31,11 +31,11 @@ export function validationform(errorNom,errorNumber,errorPoste,nom,numero,age,po
         errorAge.textContent = "L'age est requis.";
         valide = false;
     }
-    else if(age<14){
+    else if(age<18){
         errorAge.textContent="l'age trée petit";
         valide=false;
     }
-    else if(age>50){
+    else if(age>39){
         errorAge.textContent="l'age trée ground ";
         valide=false;
     }
