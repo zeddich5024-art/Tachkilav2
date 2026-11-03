@@ -8,8 +8,9 @@ function afficherJoueurs() {
 
     liste.innerHTML = " ";
     Joueurs.forEach((joueur) => {
-        const carte = document.createElement("div");
-        carte.className="border-l-4 rounded-lg border-green-500 bg-slate-900 w-78 m-2 shadow-xl/30 flex gap-2"
+        const carte2 = document.createElement("div");
+        const carte1 = document.createElement("div");
+        carte1.className="border-l-4 rounded-lg border-green-500 bg-slate-900 w-78 m-2 shadow-xl/30 flex gap-2"
         
         const informations = document.createElement("div");
         informations.className="flex gap-3 p-3"
@@ -42,7 +43,7 @@ function afficherJoueurs() {
 
 
         if(joueur.poste ==="GB"){
-            carte.className="border-l-4 rounded-lg border-orange-400 w-78 m-2 bg-slate-900 shadow-xl/30 gap-2"
+            carte1.className="border-l-4 rounded-lg border-orange-400 w-78 m-2 bg-slate-900 shadow-xl/30 gap-2"
             numero.className="rounded-full  border-2 border-orange-400 self-center text-orange-400 font-medium   text-sm py-2 px-4";
             poste.className="bg-orange-400/30 pl-1 text-orange-400 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
@@ -50,7 +51,7 @@ function afficherJoueurs() {
             <option value="GB">GB-Gardien</option> `;
         }
         else if(joueur.poste ==="MIL"){
-            carte.className="border-l-4 rounded-lg border-blue-500 w-78 m-2 bg-slate-900 shadow-xl/30 gap-2"
+            carte1.className="border-l-4 rounded-lg border-blue-500 w-78 m-2 bg-slate-900 shadow-xl/30 gap-2"
             numero.className="rounded-full  border-2 border-blue-500 self-center text-blue-500 font-medium   text-sm py-2 px-4";
             poste.className="bg-blue-500/30 pl-1 text-blue-500 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
@@ -61,7 +62,7 @@ function afficherJoueurs() {
             <option value="MD">MD-Milieu droit</option>`;
         }
         else if(joueur.poste ==="ATT"){
-            carte.className="border-l-4 rounded-lg border-red-600 w-78 m-2  bg-slate-900 shadow-xl/30 gap-2"
+            carte1.className="border-l-4 rounded-lg border-red-600 w-78 m-2  bg-slate-900 shadow-xl/30 gap-2"
             numero.className="rounded-full  border-2 border-red-600 self-center text-red-600 font-medium   text-sm py-2 px-4";
             poste.className="bg-red-600/30 pl-1 text-red-600 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
@@ -73,8 +74,8 @@ function afficherJoueurs() {
         if(joueur.status==="Blessé"){
             status.className="bg-red-600/30 pl-1 text-red-600 w-13 h-5 rounded-lg text-sm font-medium";
             listposition.innerHTML = `
-            <option value="bancz"> Indisponible</option>`;
-            listposition.classList.add("")
+            <option value="bancz" disabled selected hidden> Indisponible</option>`;
+            carte2.className="opacity-75"
         }
         else{
             status.classList.add("hidden")
@@ -87,8 +88,9 @@ function afficherJoueurs() {
         details.append(nom, poste);
         informations.append(numero, details ,status);
         ligne.append(listposition)
-        carte.append(informations);
-        liste.append(carte,ligne);
+        carte1.append(informations);
+        carte2.append(carte1,ligne)
+        liste.append(carte2);
     });
     
     nombreJoueurs.textContent = Joueurs.length;
