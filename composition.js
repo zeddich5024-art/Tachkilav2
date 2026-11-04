@@ -3,7 +3,7 @@ console.log(Joueurs)
 const liste = document.querySelector("#liste-joueurs");
 const messageVide = document.querySelector("#message-vide");
 const nombreJoueurs = document.querySelector("#nombre-joueurs");
-
+import {validationposte,afficherTerrain} from "./function.js";
 function afficherJoueurs() {
 
     liste.innerHTML = " ";
@@ -80,7 +80,14 @@ function afficherJoueurs() {
         else{
             status.classList.add("hidden")
         }
-       
+        
+        listposition.value =joueur.position || "banc" || "Indisponible";
+        listposition.addEventListener("change",()=>{
+            validationposte(listposition,joueur,Joueurs);
+            afficherJoueurs();
+            afficherTerrain(Joueurs);
+            
+        })
        
         
         
@@ -97,3 +104,4 @@ function afficherJoueurs() {
     messageVide.classList.toggle("hidden", Joueurs.length > 0);
 }
 afficherJoueurs();
+afficherTerrain(Joueurs);

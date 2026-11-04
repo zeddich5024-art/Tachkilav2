@@ -296,17 +296,8 @@ function afficherTerrain() {
             caseTerrain.append(numero, poste, nom);
 
         }
-        else {
-            const noms = {
-                DC1: "DC",
-                DC2: "DC",
-                MC1: "MC",
-                MC2: "MC",
-                BU1: "BU",
-                BU2: "BU"
-            };
-            caseTerrain.textContent = noms[position] || position;
-        }
+        
+
     });
 }
 const nombreTerrain = document.querySelector("#nombre-terrain");
