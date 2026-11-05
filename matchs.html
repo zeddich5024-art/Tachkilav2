@@ -31,5 +31,101 @@
             <li class="text-red-500"><span class="text-base ">ATT</span></li>
         </ul>
     </header>
+    <main class="bg-gray-800 h-100% min-h-dvh " id="index">
+           <section  >
+                <div class="flex justify-between items-center pl-6 pr-6 pt-8 mb-4">
+                    <div>
+                        <h2 class="font-medium text-gray-50 text-3xl">Matchs</h2>
+                        <p class="text-gray-400 text-lg font-medium">Calendrier et résultats de la saison 2026/2027</p>
+                    </div>
+                    <button class="ajouter cursor-pointer bg-green-700 w-85 m-2 mt-6 p-2 mb-4 rounded-lg font-medium text-gray-50" id="Ajouter">+Ajouter un match</button>
+                </div>
+                <div class="form  absolute top-20 left-120 bg-slate-700 w-96 rounded-lg h-105 p-6 hidden" id="containerAjouter">
+                <form  id="form-joueur">
+                    <div class="flex justify-between">
+                        <p class="text-gray-100 font-medium " >Ajouter un match</p>
+                        <i class="fa-solid fa-x text-sm text-gray-400 cursor-pointer" id="btnX"></i>
+                    </div>
+                    <div class="mt-2 mb-4">
+                        <label for=""  class="text-gray-400 font-medium text-sm">Adversaire</label>
+                        <br>
+                        <input type="text" id="nom-joueur"  class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                        
+                    </div>
+                    
+                    <div class="grid grid-cols-[1fr_1fr] gap-2">
+                    <div >
+                    <p class="text-gray-400 font-medium text-sm">Date</p>
+                    <div >
+                        <input type="date"  id="Date" class="w-1/1 bg-slate-900 border-1 border-gray-50 text-gray-50 h-8 rounded-lg  flex-wrap mt-2 mb-4">
+                    </div>
+                    </div>
+                    <div >
+                    <p class="text-gray-400 font-medium text-sm mb-2">Heure</p>
+                    <input type="time"  id="time-match" value="15:00" class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                    </div>
+                    </div>
+                    <div class="mt-2 mb-4">
+                        <label for=""  class="text-gray-400 font-medium text-sm">Lieu</label>
+                        <br>
+                        <input type="text" id="nom-joueur" class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                        
+                    </div>
+                    <p class="text-gray-400 font-medium text-sm">Lieu du match</p>
+                    <div class="grid grid-cols-[1fr_1fr] gap-2">
+                    <div class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal pl-3 pt-1 bg-slate-900 border-1">
+                    <input type="radio"  id="Lieu" name="Lieu"  >
+                    <label for="Lieu">Domicile</label>
+                    <p id="errorage" class="text-sm text-red-700"></p>
+                    </div>
+                    <div class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal pl-3 pt-1 bg-slate-900 border-1">
+                    <input type="radio"  id="Lieu1" name="Lieu" >
+                    <label for="Lieu1" >Extérieur</label>
+                    <p id="errorage" class="text-sm text-red-700"></p>
+                    </div>
+                    
+                    </div>
+                    <div class="absolute right-4 bottom-4">
+                        <button type="button" id="annuler"  class="bg-slate-400 rounded-lg w-20 border-1 border-gray-200 p-1 cursor-pointer">Annuler</button>
+                        <button type="submit" class="bg-green-500 rounded-lg w-23 p-1 border-1 border-gray-200 cursor-pointer">Enregistrer</button>
+                    </div>
+                </form>
+                </div>
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] ml-3 mr-3 ">
+                    <article class=" border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start">VICTOIRES</p>
+                        <p class="text-3xl font-bold text-gray-50" id="nombre-joueurs">1</p>
+                    </article >
+                    <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start ">NULS</p>
+                        <p class="text-3xl font-bold text-green-700" id="nomber-forme">0</p>
+                    </article>
+                    <article class="border-1 border-gray-950 rounded-lg p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
+                        <p class="font-medium text-sm text-gray-400 self-start ">DÈFAITES</p>
+                        <p class="text-3xl font-bold text-red-700" id="nomber-blessé">0</p>
+                    </article>
+                    <article class="border-1 border-gray-950 rounded-lg p-2 bg-slate-400/20 m-4 flex flex-col gap-1">
+                        <p class="font-medium text-sm text-gray-400 self-start ">BUTS MARQUÈS</p>
+                        <p class="text-3xl font-bold text-gray-50">7</p>
+                    </article>
+                    <article class="border-1 border-gray-950 rounded-lg p-2 bg-slate-400/20 m-4 flex flex-col gap-1">
+                        <p class="font-medium text-sm text-gray-400 self-start ">BUTS ENCAISSÈS</p>
+                        <p class="text-3xl font-bold text-gray-50">5</p>
+                    </article>
+                </div>
+                <div class="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mr-6 flex gap-2">
+                    <div class="p-1 pl-2 pr-2 border-1 border-gray-950 bg-gray-950/25  rounded-lg w-1/4">
+                        <button id="Tous" class=" p-1 w-1/4  rounded-lg font-semibold text-gray-400 focus:bg-green-800 hover:bg-green-800 cursor-pointer">Tous<span class="px-1 rounded-md bg-slate-900/70 text-gray-50 ml-1">3</span></button>
+                        <button id="GB" class=" p-1 w-1/3  rounded-lg font-semibold text-gray-400 focus:bg-green-800 hover:bg-green-800  cursor-pointer" >À venir<span class="px-1 rounded-md bg-slate-900/70 text-gray-50 ml-1">1</span></button>
+                        <button id="DEF" class=" p-1 w-1/3  rounded-lg font-semibold text-gray-400 focus:bg-green-800 hover:bg-green-800  cursor-pointer">Joués <span class="px-1 rounded-md bg-slate-900/70 text-gray-50 ml-1">2</span></button>
+                    </div>
+                    <input type="text" name="fsrch" id="text-search" class="w-3/4 border-1 border-gray-950 bg-gray-950/25 h-10 rounded-lg">
+
+                </div>
+                <div id="Container" class="grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[1fr-1fr] gap-2 m-5">
+                </div>
+                
+           </section>
+    </main>
 </body>
 </html>
