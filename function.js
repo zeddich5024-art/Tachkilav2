@@ -111,12 +111,10 @@ export function afficherTerrain(Joueurs) {
         const caseTerrain = document.querySelector(`.position-joueur .${position}`);
         if (!caseTerrain) {
             console.error("Centre introuvable:", position);
-            console.log("error poste")
             return
         }
         const joueur = Joueurs.find(joueur => joueur.position === position);
         if (joueur) {
-            console.log("error")
             caseTerrain.innerHTML = "";
 
             const numero = document.createElement("span");

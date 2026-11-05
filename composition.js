@@ -35,10 +35,10 @@ function afficherJoueurs() {
         listposition.className = " w-1/1  border-1 border-gray-500 shadow-xl/30 bg-gray-400/8 h-8  rounded-lg";
         listposition.innerHTML = `
             <option value="banc">Sur le banc</option>
-            <option value="DG">DG-Défenseur gauche</option>
-            <option value="DC1">DC-Défenseur central 1</option>
-            <option value="DC2">DC-Défenseur central 2</option>
-            <option value="DD">DD-Défenseur droit</option>
+            <option value="DG" >DG-Défenseur gauche</option>
+            <option value="DC1" >DC-Défenseur central 1</option>
+            <option value="DC2" >DC-Défenseur central 2</option>
+            <option value="DD" >DD-Défenseur droit</option>
                 `;
 
 
@@ -48,49 +48,52 @@ function afficherJoueurs() {
             poste.className="bg-orange-400/30 pl-1 text-orange-400 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
             <option value="banc">Sur le banc</option>
-            <option value="GB">GB-Gardien</option> `;
+            <option value="GB" >GB-Gardien</option> `;
         }
         else if(joueur.poste ==="MIL"){
             carte1.className="border-l-4 rounded-lg border-blue-500 w-78 m-2 bg-slate-900 shadow-xl/30 gap-2"
             numero.className="rounded-full  border-2 border-blue-500 self-center text-blue-500 font-medium   text-sm py-2 px-4";
             poste.className="bg-blue-500/30 pl-1 text-blue-500 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
-            <option value="banc">Sur le banc</option>
-            <option value="MG">MG-Milieu gauche</option>
-            <option value="MC1">MC-Milieu central 1</option>
-            <option value="MC2">MC-Milieu central 2</option>
-            <option value="MD">MD-Milieu droit</option>`;
+            <option value="banc" >Sur le banc</option>
+            <option value="MG" id="MG" >MG-Milieu gauche</option>
+            <option value="MC1" >MC-Milieu central 1</option>
+            <option value="MC2" >MC-Milieu central 2</option>
+            <option value="MD" >MD-Milieu droit</option>`;
         }
         else if(joueur.poste ==="ATT"){
             carte1.className="border-l-4 rounded-lg border-red-600 w-78 m-2  bg-slate-900 shadow-xl/30 gap-2"
             numero.className="rounded-full  border-2 border-red-600 self-center text-red-600 font-medium   text-sm py-2 px-4";
             poste.className="bg-red-600/30 pl-1 text-red-600 rounded-lg w-8 h-5 font-medium text-sm";
             listposition.innerHTML = `
-            <option value="banc">Sur le banc</option>
-            <option value="BU1">BU-Buteur 1</option>
-            <option value="BU2">BU-Buteur 2</option>
+            <option value="banc" >Sur le banc</option>
+            <option value="BU1"  >BU-Buteur 1</option>
+            <option value="BU2" >BU-Buteur 2</option>
                 `;
         }
         if(joueur.status==="Blessé"){
             status.className="bg-red-600/30 pl-1 text-red-600 w-13 h-5 rounded-lg text-sm font-medium";
             listposition.innerHTML = `
-            <option value="bancz" disabled selected hidden> Indisponible</option>`;
+            <option value="Indisponible" disabled selected > Indisponible</option>`;
             carte2.className="opacity-75"
         }
         else{
             status.classList.add("hidden")
         }
         
+ 
+       
+        
         listposition.value =joueur.position || "banc" || "Indisponible";
         listposition.addEventListener("change",()=>{
             validationposte(listposition,joueur,Joueurs);
             afficherJoueurs();
             afficherTerrain(Joueurs);
-            
         })
        
         
         
+        position_Occupe();
         
         details.append(nom, poste);
         informations.append(numero, details ,status);
@@ -103,5 +106,29 @@ function afficherJoueurs() {
     nombreJoueurs.textContent = Joueurs.length;
     messageVide.classList.toggle("hidden", Joueurs.length > 0);
 }
+function position_Occupe(){
+    const postesAutorises={
+                GB:["GB"],
+                DEF:["DG", "DC1","DC2","DD"],
+                MIL:["MG", "MC1", "MC2","MD"],
+                ATT:["BU1","BU2"]
+            };
+             
+            // les joueur des méme  poste
+            let joueurposte=Joueurs.filter((joueur)=>joueur.position !== "banc" &&Object.keys(postesAutorises).includes(joueur.poste))
+            console.log(joueurposte)
+            joueurposte.forEach((joueur)=>{
+                
+                if(joueur.position !== "banc"){
+                    console.log("jidjc")
+                    
+                    const options=document.querySelectorAll(`option[value="${joueur.position}"]`);
+                    options.forEach(option=>{
+                    option.disabled=true;})
+            }
+            
+    })
+}
+position_Occupe();
 afficherJoueurs();
 afficherTerrain(Joueurs);
