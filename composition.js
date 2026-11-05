@@ -3,7 +3,8 @@ console.log(Joueurs)
 const liste = document.querySelector("#liste-joueurs");
 const messageVide = document.querySelector("#message-vide");
 const nombreJoueurs = document.querySelector("#nombre-joueurs");
-import {validationposte,afficherTerrain} from "./function.js";
+const nombreTerrain = document.querySelector("#nombre-terrain");
+import {validationposte,afficherTerrain,compterJoueursTerrain} from "./function.js";
 function afficherJoueurs() {
 
     liste.innerHTML = " ";
@@ -74,7 +75,7 @@ function afficherJoueurs() {
         if(joueur.status==="Blessé"){
             status.className="bg-red-600/30 pl-1 text-red-600 w-13 h-5 rounded-lg text-sm font-medium";
             listposition.innerHTML = `
-            <option value="Indisponible" disabled selected > Indisponible</option>`;
+            <option value="banc" disabled selected hidden > Indisponible</option>`;
             carte2.className="opacity-75"
         }
         else{
@@ -84,7 +85,7 @@ function afficherJoueurs() {
  
        
         
-        listposition.value =joueur.position || "banc" || "Indisponible";
+        listposition.value =joueur.position || "banc";
         listposition.addEventListener("change",()=>{
             validationposte(listposition,joueur,Joueurs);
             afficherJoueurs();
@@ -92,7 +93,7 @@ function afficherJoueurs() {
         })
        
         
-        
+        compterJoueursTerrain(nombreTerrain,Joueurs);
         position_Occupe();
         
         details.append(nom, poste);
@@ -107,28 +108,16 @@ function afficherJoueurs() {
     messageVide.classList.toggle("hidden", Joueurs.length > 0);
 }
 function position_Occupe(){
-    const postesAutorises={
-                GB:["GB"],
-                DEF:["DG", "DC1","DC2","DD"],
-                MIL:["MG", "MC1", "MC2","MD"],
-                ATT:["BU1","BU2"]
-            };
-             
-            // les joueur des méme  poste
-            let joueurposte=Joueurs.filter((joueur)=>joueur.position !== "banc" &&Object.keys(postesAutorises).includes(joueur.poste))
-            console.log(joueurposte)
+            let joueurposte=Joueurs.filter((joueur)=>joueur.position !== "banc" )
             joueurposte.forEach((joueur)=>{
-                
-                if(joueur.position !== "banc"){
-                    console.log("jidjc")
-                    
                     const options=document.querySelectorAll(`option[value="${joueur.position}"]`);
                     options.forEach(option=>{
                     option.disabled=true;})
-            }
-            
     })
 }
-position_Occupe();
+
+
 afficherJoueurs();
 afficherTerrain(Joueurs);
+compterJoueursTerrain(nombreTerrain,Joueurs);
+position_Occupe();

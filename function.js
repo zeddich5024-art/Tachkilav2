@@ -136,3 +136,9 @@ export function afficherTerrain(Joueurs) {
 
     });
 }
+// compter Joueurs Terrain
+export function compterJoueursTerrain(nombreTerrain,Joueurs) {
+    const total = Joueurs.filter(joueur => joueur.position !== "banc" && joueur.position !== "").length;
+    nombreTerrain.textContent = total;
+    localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
+}
