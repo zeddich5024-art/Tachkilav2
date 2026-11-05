@@ -31,11 +31,11 @@ export function validationform(errorNom,errorNumber,errorPoste,nom,numero,age,po
         errorAge.textContent = "L'age est requis.";
         valide = false;
     }
-    else if(age<14){
+    else if(age<18){
         errorAge.textContent="l'age trée petit";
         valide=false;
     }
-    else if(age>50){
+    else if(age>39){
         errorAge.textContent="l'age trée ground ";
         valide=false;
     }
@@ -87,4 +87,58 @@ export function btnX(form){
     })
 } 
 
+// validation de poste
+export function validationposte(listposition,joueur,Joueurs){
+        
+            const nouvellePosition = listposition.value;
+            
+            const positionOccupee = Joueurs.some(autreJoueur =>
+                autreJoueur.id !== joueur.id && autreJoueur.position == nouvellePosition && nouvellePosition !== "banc"
+            )
+            if (positionOccupee) {
+                alert("Ce poste est déjaà occupé !")
+                listposition.value = joueur.position || "banc";
+                return;
+            }
+            joueur.position = nouvellePosition;
+            localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
+}
+// affichage des joueurs dans terrain
+export function afficherTerrain(Joueurs) {
+    console.log("zakaria")
+    const positions = ["GB", "DG", "DC1", "DC2", "DD", "MG", "MC1", "MC2", "MD", "BU1", "BU2"];
+    positions.forEach(position => {
+        const caseTerrain = document.querySelector(`.position-joueur .${position}`);
+        if (!caseTerrain) {
+            console.error("Centre introuvable:", position);
+            return
+        }
+        const joueur = Joueurs.find(joueur => joueur.position === position);
+        if (joueur) {
+            caseTerrain.innerHTML = "";
 
+            const numero = document.createElement("span");
+            numero.className = "numero-terrain";
+            numero.textContent = `#${joueur.numero}`;
+            const poste = document.createElement("span");
+            poste.className = "poste-terrain"
+            poste.textContent = position;
+            const nom = document.createElement("span");
+            nom.className = "nom-terrain";
+            nom.textContent = joueur.nom;
+
+            caseTerrain.append(numero, poste, nom);
+
+        }
+        else{
+            caseTerrain.innerHTML=position;
+        }
+
+    });
+}
+// compter Joueurs Terrain
+export function compterJoueursTerrain(nombreTerrain,Joueurs) {
+    const total = Joueurs.filter(joueur => joueur.position !== "banc" && joueur.position !== "").length;
+    nombreTerrain.textContent = total;
+    localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
+}
