@@ -1,5 +1,5 @@
 const form = document.querySelector(".form");
-import {ajouter,annuler,btnX} from "./function.js";
+import {ajouter,annuler,btnX,validationformmatch} from "./function.js";
 import { Matchs } from "./data.js";
 ajouter(form);
 annuler(form);
@@ -12,6 +12,11 @@ const nomÈquipe=document.querySelector("#nomÈquipe");
 const lieumatch=document.querySelector("#lieumatch");
 const datematch=document.querySelector("#Date");
 const Timematch=document.querySelector("#time-match");
+const errorNomÈquipe=document.querySelector("#errornomÈquipe")
+const errorDatematch=document.querySelector("#errorDatematch")
+const errorTimematch=document.querySelector("#errortimematch")
+const errorLieumatch=document.querySelector("#errorLieumatch")
+const errorLieu=document.querySelector("#errorLieu")
 formmatch.addEventListener("submit",(e)=>{
     e.preventDefault();
     const nom = nomÈquipe.value.trim();
@@ -27,6 +32,8 @@ formmatch.addEventListener("submit",(e)=>{
     const JourNb=saintValentin.getDate();
     const hours=Timematch.value;
     const Lieu=document.querySelector(`input[name="Lieu"]:checked`);
+    // Validarion de formulaire de match
+    validationformmatch(errorNomÈquipe,errorTimematch,DateMatch,errorDatematch,errorLieumatch,nom,hours,lieuMatch,Lieu,errorLieu)
     
 
     const match={
@@ -38,7 +45,7 @@ formmatch.addEventListener("submit",(e)=>{
         jourNb:JourNb,
         hours:hours,
         lieuMatch:lieuMatch,
-        lieu:Lieu
+        lieu:Lieu.value,
     }
     Matchs.push(match);
     localStorage.setItem("Matchs",JSON.stringify(Matchs));

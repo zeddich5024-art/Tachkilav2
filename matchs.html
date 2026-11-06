@@ -40,7 +40,7 @@
                     </div>
                     <button class="ajouter cursor-pointer bg-green-700 w-85 m-2 mt-6 p-2 mb-4 rounded-lg font-medium text-gray-50" id="Ajouter">+Ajouter un match</button>
                 </div>
-                <div class="form  absolute top-20 left-120 bg-slate-700 w-96 rounded-lg h-105 p-6 hidden" id="containerAjouter">
+                <div class="form  absolute top-20 left-120 bg-slate-700 w-96 rounded-lg h-120 p-6 hidden" id="containerAjouter">
                 <form  id="form-joueur">
                     <div class="flex justify-between">
                         <p class="text-gray-100 font-medium " >Ajouter un match</p>
@@ -50,7 +50,7 @@
                         <label for=""  class="text-gray-400 font-medium text-sm">Adversaire</label>
                         <br>
                         <input type="text" id="nomÈquipe"  class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
-                        
+                        <p id="errornomÈquipe" class="text-sm text-red-700"></p>
                     </div>
                     
                     <div class="grid grid-cols-[1fr_1fr] gap-2">
@@ -58,33 +58,33 @@
                     <p class="text-gray-400 font-medium text-sm">Date</p>
                     <div >
                         <input type="date"  id="Date" class="w-1/1 bg-slate-900 border-1 border-gray-50 text-gray-50 h-8 rounded-lg  flex-wrap mt-2 mb-4">
+                        <p id="errorDatematch" class="text-sm text-red-700"></p>
                     </div>
                     </div>
                     <div >
                     <p class="text-gray-400 font-medium text-sm mb-2">Heure</p>
-                    <input type="time"  id="time-match" value="15:00" class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                    <input type="time"  id="time-match" placeholder="15:00" class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                    <p id="errortimematch" class="text-sm text-red-700"></p>
                     </div>
                     </div>
                     <div class="mt-2 mb-4">
                         <label for=""  class="text-gray-400 font-medium text-sm">Lieu</label>
                         <br>
                         <input type="text" id="lieumatch" class="w-70 h-8 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
-                        
+                         <p id="errorLieumatch" class="text-sm text-red-700"></p>
                     </div>
                     <p class="text-gray-400 font-medium text-sm">Lieu du match</p>
                     <div class="grid grid-cols-[1fr_1fr] gap-2">
                     <div class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal pl-3 pt-1 bg-slate-900 border-1">
                     <input type="radio"  id="Lieu" name="Lieu" value="Domicile" >
                     <label for="Lieu">Domicile</label>
-                    <p id="errorage" class="text-sm text-red-700"></p>
                     </div>
                     <div class="w-1/1 h-8 rounded-lg text-gray-100 text-base font-normal pl-3 pt-1 bg-slate-900 border-1">
                     <input type="radio"  id="Lieu1" name="Lieu" value="Extérieur">
                     <label for="Lieu1" >Extérieur</label>
-                    <p id="errorage" class="text-sm text-red-700"></p>
                     </div>
-                    
                     </div>
+                    <p id="errorLieu" class="text-sm text-red-700"></p>
                     <div class="absolute right-4 bottom-4">
                         <button type="button" id="annuler"  class="bg-slate-400 rounded-lg w-20 border-1 border-gray-200 p-1 cursor-pointer">Annuler</button>
                         <button type="submit" class="bg-green-500 rounded-lg w-23 p-1 border-1 border-gray-200 cursor-pointer">Enregistrer</button>
