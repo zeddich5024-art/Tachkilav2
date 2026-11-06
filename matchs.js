@@ -1,9 +1,11 @@
 const form = document.querySelector(".form");
 import {ajouter,annuler,btnX} from "./function.js";
+import { Matchs } from "./data.js";
 ajouter(form);
 annuler(form);
 btnX(form);
-
+let idmatch=Matchs.length;
+console.log(idmatch)
 const formmatch = document.querySelector("#form-joueur");
 const container=document.querySelector("#Container");
 const nomÈquipe=document.querySelector("#nomÈquipe");
@@ -13,21 +15,35 @@ const Timematch=document.querySelector("#time-match");
 formmatch.addEventListener("submit",(e)=>{
     e.preventDefault();
     const nom = nomÈquipe.value.trim();
-    console.log(nom)
-    const lienMatch=lieumatch.value.trim();
-    console.log(lienMatch)
+    const lieuMatch=lieumatch.value.trim();
     const DateMatch=datematch.value;
-    console.log(DateMatch)
     const saintValentin = new Date(DateMatch);
     const mois = saintValentin.getMonth();
     const nomsMois = ["Jan", "Fév", "Mar" ,"Avr" , "Mai" ,"Juin","Juil","Aout","Sep","Oct","Nov","Déc"];
     const Mois=nomsMois[mois];
-    console.log(Mois); 
-    const saintValentin1 = new Date(DateMatch);
-    const jour = saintValentin1.getDay();
+    const jour = saintValentin.getDay();
     const nomsJours = ["DIM", "LUN", "MAR","MER","JEU","VEN","SAM"];
     const Jour=nomsJours[jour];
-    console.log(Jour); 
+    const JourNb=saintValentin.getDate();
+    const hours=Timematch.value;
+    const Lieu=document.querySelector(`input[name="Lieu"]:checked`);
     
-    
+
+    const match={
+        id:idmatch,
+        nom:nom,
+        date:DateMatch,
+        mois:Mois,
+        jour:Jour,
+        jourNb:JourNb,
+        hours:hours,
+        lieuMatch:lieuMatch,
+        lieu:Lieu
+    }
+    Matchs.push(match);
+    localStorage.setItem("Matchs",JSON.stringify(Matchs));
+    idmatch++;
+    console.log(Matchs)
+    formmatch.reset();
+    form.classList.add("hidden");
 })
