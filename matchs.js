@@ -57,6 +57,7 @@ formmatch.addEventListener("submit",(e)=>{
     form.classList.add("hidden");
 })
 function affichermatch(){
+    container.innerHTML="";
     Matchs.forEach(match=>{
     const cartematch=document.createElement("div");
     cartematch.className="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mt-2 mr-6 flex justify-between px-6";
@@ -103,6 +104,16 @@ function affichermatch(){
     btnSupprimer.innerHTML = `<i class="fa-solid fa-trash"></i>`;
     btnSupprimer.title = "Supprimer";
 
+    //  supprimer le match
+    console.log(Matchs)
+    btnSupprimer.addEventListener("click",()=>{
+        const index=Matchs.indexOf(match);
+        console.log(index);
+        Matchs.splice(index,1);
+        cartematch.remove();
+        localStorage.setItem("Matchs",JSON.stringify(Matchs));
+    })
+   
 
     dateMatch.append(jourstring,journombre,moisstring,hoursMatch);
     informationMatch.append(lieu,nomMatch,lieuMatch);
