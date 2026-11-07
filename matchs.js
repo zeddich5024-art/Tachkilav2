@@ -32,13 +32,14 @@ formmatch.addEventListener("submit",(e)=>{
     const JourNb=saintValentin.getDate();
     const hours=Timematch.value;
     const Lieu=document.querySelector(`input[name="Lieu"]:checked`);
-    // Validarion de formulaire de match
+    // Validation de formulaire de match
     validationformmatch(errorNomÈquipe,errorTimematch,DateMatch,errorDatematch,errorLieumatch,nom,hours,lieuMatch,Lieu,errorLieu)
     
 
     const match={
         id:idmatch,
-        nom:nom,
+        noméquipe:"Atlas FC",
+        nomadverse:nom,
         date:DateMatch,
         mois:Mois,
         jour:Jour,
@@ -50,7 +51,66 @@ formmatch.addEventListener("submit",(e)=>{
     Matchs.push(match);
     localStorage.setItem("Matchs",JSON.stringify(Matchs));
     idmatch++;
+    affichermatch()
     console.log(Matchs)
     formmatch.reset();
     form.classList.add("hidden");
 })
+function affichermatch(){
+    Matchs.forEach(match=>{
+    const cartematch=document.createElement("div");
+    cartematch.className="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mt-2 mr-6 flex justify-between px-6";
+    const linge1=document.createElement("div");
+    linge1.className="flex gap-4"
+    const dateMatch=document.createElement("div");
+    dateMatch.className="py-2 px-6 border-1 border-gray-950 bg-gray-950/25 shadow-xl/30 rounded-lg";
+    const jourstring=document.createElement("p");
+    jourstring.className="text-sm text-gray-500 font-medium";
+    jourstring.textContent=match.jour;
+    const journombre=document.createElement("p");
+    journombre.className="text-lg font-medium pl-1 text-gray-50";
+    journombre.textContent=match.jourNb;
+    const moisstring=document.createElement("p");
+    moisstring.className="text-sm text-gray-500 font-medium";
+    moisstring.textContent=match.mois;
+    const hoursMatch=document.createElement("p");
+    hoursMatch.className="text-sm font-medium ";
+    hoursMatch.textContent=match.hours;
+    const informationMatch=document.createElement("div");
+    informationMatch.className=""
+    const lieu=document.createElement("p")
+    lieu.className="px-1 bg-green-500/30 w-18 shadow-xl/30 text-green-500 rounded-sm";
+    lieu.textContent=match.lieu;
+    const nomMatch=document.createElement("div");
+    nomMatch.className="text-lg font-semibold text-gray-50 mt-2"
+    nomMatch.innerHTML=`${match.noméquipe} vs ${match.nomadverse}`;
+    const lieuMatch=document.createElement("p");
+    lieuMatch.className="text-gray-500 text-sm mt-4 font-meduim";
+    lieuMatch.innerHTML=`<i class="fa-solid fa-location-dot"></i> ${match.lieuMatch}`;
+    const linge2=document.createElement("div");
+    linge2.className="flex gap-2"
+    const resultat=document.createElement("p");
+    resultat.className="text-3xl font-semibold bg-gray-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
+    resultat.textContent="7-5";
+    const actions = document.createElement("div");
+        actions.className="flex gap-4"
+    const btnModifier = document.createElement("button");
+    btnModifier.className = "text-orange-600 hover:text-blue-600 cursor-pointer";
+    btnModifier.innerHTML = '<i class="fa-solid fa-pen"></i>';
+    btnModifier.title = "Modifier";
+    const btnSupprimer = document.createElement("button");
+    btnSupprimer.className = "text-black  hover:text-red-700 cursor-pointer";
+    btnSupprimer.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    btnSupprimer.title = "Supprimer";
+
+
+    dateMatch.append(jourstring,journombre,moisstring,hoursMatch);
+    informationMatch.append(lieu,nomMatch,lieuMatch);
+    linge1.append(dateMatch,informationMatch)
+    actions.append(btnModifier,btnSupprimer)
+    linge2.append(resultat,actions)
+    cartematch.append(linge1,linge2);
+    container.append(cartematch);
+})
+}
+ affichermatch();
