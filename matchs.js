@@ -86,6 +86,7 @@ const nomclub=document.querySelector("#nomclub");
 const formscore=document.querySelector("#formscore")
 let matchSelectionne=null;
 let editingId = null;
+
 function affichermatch(){
     container.innerHTML="";
     Matchs.forEach(match=>{
@@ -141,9 +142,12 @@ function affichermatch(){
     const saisirscore=document.createElement("button");
     saisirscore.className="px-2 h-10 bg-blue-500 text-gray-50 self-end mr-5 rounded-lg shadow-xl/30 cursor:pointer hover:bg-blue-500/50"
     saisirscore.textContent="Saisir le score"
-    
-    if(match.scorAtlas==="" && match.scorclub===""){
+    if(!estPassee(match)){
+        linge2.append(composition,actions);
+    }
+    else if(match.scorAtlas==="" && match.scorclub===""){
         resul.append(saisirscore,composition);
+        linge2.append(resul,actions)
     }else{
         resultat.textContent=`${match.scorAtlas} - ${match.scorclub}`;
         resul.append(resultat,composition)
@@ -159,6 +163,7 @@ function affichermatch(){
             club.value=match.scorclub;
             matchSelectionne=match;
         });
+        linge2.append(resul,actions)
     }
     //  supprimer le match
     console.log(Matchs)
@@ -219,5 +224,14 @@ formscore.addEventListener("submit",(e)=>{
     affichermatch();
     
 })
+const estPassee =(match)=>{
+    const dateHeure=new Date(`${match.date}T${match.hours}`);
+    const maintenant=Date.now();
+    if(dateHeure.getTime() > maintenant){
+        setTimeout(()=>{
+            affichermatch();},dateHeure.getTime()-maintenant);
+    }
+    return dateHeure.getTime()<=maintenant;
+};
 
  affichermatch();
