@@ -4,6 +4,10 @@ import { Matchs } from "./data.js";
 ajouter(form);
 annuler(form);
 btnX(form);
+const annulerscore=document.querySelector("#annulerscore");
+annulerscore.addEventListener("click",()=>{
+    saisiscore.classList.add("hidden");
+})
 let idmatch=Matchs.length;
 console.log(idmatch)
 const formmatch = document.querySelector("#form-joueur");
@@ -17,6 +21,8 @@ const errorDatematch=document.querySelector("#errorDatematch")
 const errorTimematch=document.querySelector("#errortimematch")
 const errorLieumatch=document.querySelector("#errorLieumatch")
 const errorLieu=document.querySelector("#errorLieu")
+const atlas=document.querySelector("#atlas");
+const club =document.querySelector("#club");
 formmatch.addEventListener("submit",(e)=>{
     e.preventDefault();
     const nom = nomÈquipe.value.trim();
@@ -47,6 +53,8 @@ formmatch.addEventListener("submit",(e)=>{
         hours:hours,
         lieuMatch:lieuMatch,
         lieu:Lieu.value,
+        scorAtlas:"",
+        scorclub:""
     }
     Matchs.push(match);
     localStorage.setItem("Matchs",JSON.stringify(Matchs));
@@ -56,6 +64,9 @@ formmatch.addEventListener("submit",(e)=>{
     formmatch.reset();
     form.classList.add("hidden");
 })
+const saisiscore=document.querySelector("#modifier-score");
+const nomclub=document.querySelector("#nomclub");
+let matchSelectionne=null;
 function affichermatch(){
     container.innerHTML="";
     Matchs.forEach(match=>{
@@ -92,18 +103,44 @@ function affichermatch(){
     linge2.className="flex gap-2"
     const resultat=document.createElement("p");
     resultat.className="text-3xl font-semibold bg-gray-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
-    resultat.textContent="7-5";
+    
     const actions = document.createElement("div");
-        actions.className="flex gap-4"
-    const btnModifier = document.createElement("button");
-    btnModifier.className = "text-orange-600 hover:text-blue-600 cursor-pointer";
-    btnModifier.innerHTML = '<i class="fa-solid fa-pen"></i>';
-    btnModifier.title = "Modifier";
+    actions.className="flex gap-4"
+    
     const btnSupprimer = document.createElement("button");
     btnSupprimer.className = "text-black  hover:text-red-700 cursor-pointer";
     btnSupprimer.innerHTML = `<i class="fa-solid fa-trash"></i>`;
     btnSupprimer.title = "Supprimer";
-
+    const resul=document.createElement("div")
+    resul.className="flex flex-col justify-between"
+    const composition=document.createElement("button");
+    composition.className="px-2 h-10 bg-gray-500/50 text-gray-50 self-end mr-5 rounded-lg shadow-xl/30 cursor:pointer hover:bg-green-500"
+    composition.textContent="Voir la composition"
+    composition.addEventListener("click",()=>{
+        window.location.href="composition.html";
+    })
+    const saisirscore=document.createElement("button");
+    saisirscore.className="px-2 h-10 bg-blue-500 text-gray-50 self-end mr-5 rounded-lg shadow-xl/30 cursor:pointer hover:bg-blue-500/50"
+    saisirscore.textContent="Saisir le score"
+    
+    if(match.scorAtlas==="" && match.scorclub===""){
+        resul.append(saisirscore,composition);
+    }else{
+        resultat.textContent=`${match.scorAtlas} - ${match.scorclub}`;
+        resul.append(resultat,composition)
+        // modifier le score
+        const Modifierscore= document.createElement("button");
+        Modifierscore.className = "text-gray-800 hover:text-red-500  text-sm font-meduim  cursor-pointer";
+        Modifierscore.textContent = "Modifier le score";
+        actions.append(Modifierscore);
+        Modifierscore.addEventListener("click",()=>{
+            saisiscore.classList.remove("hidden");
+            nomclub.textContent=match.nomadverse;
+            atlas.value=match.scorAtlas;
+            club.value=match.scorclub;
+            matchSelectionne=match;
+        });
+    }
     //  supprimer le match
     console.log(Matchs)
     btnSupprimer.addEventListener("click",()=>{
@@ -113,15 +150,37 @@ function affichermatch(){
         cartematch.remove();
         localStorage.setItem("Matchs",JSON.stringify(Matchs));
     })
-   
+    
+    saisirscore.addEventListener("click",()=>{
+        matchSelectionne=match;
+        saisiscore.classList.remove("hidden");
+        nomclub.textContent=match.nomadverse;
+        atlas.value="";
+        club.value="";
+    });
+    
 
     dateMatch.append(jourstring,journombre,moisstring,hoursMatch);
     informationMatch.append(lieu,nomMatch,lieuMatch);
     linge1.append(dateMatch,informationMatch)
-    actions.append(btnModifier,btnSupprimer)
-    linge2.append(resultat,actions)
+    actions.append(btnSupprimer)
+    
+    linge2.append(resul,actions)
     cartematch.append(linge1,linge2);
     container.append(cartematch);
 })
 }
+formscore.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    if(!matchSelectionne) return;
+    matchSelectionne.scorAtlas=atlas.value;
+    matchSelectionne.scorclub=club.value;
+    localStorage.setItem("Matchs",JSON.stringify(Matchs));
+    saisiscore.classList.add("hidden");
+    formscore.reset();
+    matchSelectionne=null;
+    affichermatch();
+    
+})
+
  affichermatch();

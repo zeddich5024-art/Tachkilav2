@@ -90,6 +90,24 @@
                         <button type="submit" class="bg-green-500 rounded-lg w-23 p-1 border-1 border-gray-200 cursor-pointer">Enregistrer</button>
                     </div>
                 </form>
+                
+                </div>
+                <div id="modifier-score" class="absolute top-80 left-120 bg-slate-700 w-80 rounded-lg h-35 p-6 hidden">
+                     <form class="flex " id="formscore">
+                        <div>
+                        <label for="Atlas" class="text-gray-50 text-lg font-medium">Atlas FC : </label>
+                        <input type="number" id="atlas" class="h-9 w-9 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                        </div>
+                        <p class="text-gray-50 text-2xl font-semibold px-4">-</p>
+                        <div>
+                            <input type="number" id="club" class="h-9 w-9 rounded-lg text-gray-100 text-base font-normal bg-slate-900 border-1">
+                            <label for="club" class="text-gray-50 text-lg font-medium"> : <span id="nomclub"></span></label>
+                        </div>
+                        <div class="absolute right-4 bottom-4">
+                        <button type="button" id="annulerscore"  class="bg-slate-400 rounded-lg w-20 border-1 border-gray-200 p-1 cursor-pointer">Annuler</button>
+                        <button type="submit" class="bg-green-500 rounded-lg w-23 p-1 border-1 border-gray-200 cursor-pointer">Enregistrer</button>
+                    </div>
+                     </form>
                 </div>
                 <div class="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] ml-3 mr-3 ">
                     <article class=" border-1 border-gray-950 rounded-lg shadow-xl/30 p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
