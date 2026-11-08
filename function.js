@@ -142,3 +142,57 @@ export function compterJoueursTerrain(nombreTerrain,Joueurs) {
     nombreTerrain.textContent = total;
     localStorage.setItem("Joueurs", JSON.stringify(Joueurs));
 }
+
+export function validationformmatch(errorNomÈquipe,errorTimematch,DateMatch,errorDatematch,errorLieumatch,nom,hours,lieuMatch,Lieu,errorLieu){
+      let valide = true;
+    if (nom.length == 0) {
+        errorNomÈquipe.textContent = "Le nom Èquipe est requis.";
+        valide = false;
+    }
+    else if (nom === "Atlas FC" || nom === "atlas fc") {
+        errorNomÈquipe.textContent = "Veuillez saisir le nom d'un autre club que celui-ci";
+        valide = false;
+    }
+     else if (nom.length < 3) {
+        errorNomÈquipe.textContent = "Le nom  Èquipe doit contenir au moins 3 caractères.";
+        valide = false;
+    }else {
+        errorNomÈquipe.textContent = "";
+    }
+    if (lieuMatch == "") {
+        errorLieumatch.textContent = "Le Lieu du match est requis.";
+        valide = false;
+    }
+    else if (lieuMatch.length < 3) {
+        errorLieumatch.textContent = "Le Lieu du match doit contenir au moins 3 caractères.";
+        valide = false;
+    }
+    else{
+        errorLieumatch.textContent = "";
+    }
+    if (DateMatch == "") {
+        errorDatematch.textContent = "La date du match est requis.";
+        valide = false;
+    }
+    else{
+        errorDatematch.textContent = "";
+    }
+    if (hours== "") {
+        errorTimematch.textContent = "La respect des horaires du match est requis.";
+        valide = false;
+    }
+    else{
+        errorTimematch.textContent = "";
+    }
+    if(!Lieu){
+        errorLieu.textContent ="Le Lieu du match est requis.";
+        valide=false;
+    }
+    else{
+        errorLieu.textContent="";
+    }
+    if (!valide) {
+        return false;;
+    }
+        
+}
