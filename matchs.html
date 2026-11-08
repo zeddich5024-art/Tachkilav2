@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="Tachkila.css">
 </head>
-<body class=" overflow-hidden">
-    <header class=" bg-slate-700 flex justify-between align-center pt-3 pb-3 pl-5 pr-5 items-center border-b-1 border-gray-100 relative right-0 left-0 z-10 ">
+<body >
+    <header class=" bg-slate-700 flex justify-between align-center pt-3 pb-3 pl-5 pr-5 items-center border-b-1 border-gray-100 sticky top-0  z-10 ">
         <div class="flex gap-2 items-center">
         <img src="club.png" class="w-8" alt="Écusson Atlas FC Vert et Blanc"> 
         <h4 class="text-gray-100 font-medium text-xl">TACHKILA</h4>
@@ -31,7 +31,7 @@
             <li class="text-red-500"><span class="text-base ">ATT</span></li>
         </ul>
     </header>
-    <main class="bg-gray-800 h-100% min-h-dvh overflow-y-scroll " id="index">
+    <main class="bg-gray-800 h-100% min-h-dvh " id="index">
            <section  >
                 <div class="flex justify-between items-center pl-6 pr-6 pt-8 mb-4">
                     <div>
@@ -112,23 +112,23 @@
                 <div class="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] ml-3 mr-3 ">
                     <article class=" border-1 border-gray-950 rounded-lg shadow-xl/30 p-3 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start">VICTOIRES</p>
-                        <p class="text-3xl font-bold text-gray-50" id="nombre-joueurs">1</p>
+                        <p class="text-3xl font-bold text-green-700" id="nombre-victoires"></p>
                     </article >
                     <article class="border-1 border-gray-950 rounded-lg p-3 shadow-xl/30 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start ">NULS</p>
-                        <p class="text-3xl font-bold text-green-700" id="nomber-forme">0</p>
+                        <p class="text-3xl font-bold text-gray-50" id="nombre-nuls"></p>
                     </article>
                     <article class="border-1 border-gray-950 rounded-lg p-3 shadow-xl/30 bg-slate-400/20 m-4 flex flex-col gap-2">
                         <p class="font-medium text-sm text-gray-400 self-start ">DÈFAITES</p>
-                        <p class="text-3xl font-bold text-red-700" id="nomber-blessé">0</p>
+                        <p class="text-3xl font-bold text-red-700" id="nombre-defaites"></p>
                     </article>
                     <article class="border-1 border-gray-950 rounded-lg p-2 shadow-xl/30 bg-slate-400/20 m-4 flex flex-col gap-1">
                         <p class="font-medium text-sm text-gray-400 self-start ">BUTS MARQUÈS</p>
-                        <p class="text-3xl font-bold text-gray-50">7</p>
+                        <p class="text-3xl font-bold text-gray-50" id="scoratlas"></p>
                     </article>
                     <article class="border-1 border-gray-950 rounded-lg p-2 shadow-xl/30 bg-slate-400/20 m-4 flex flex-col gap-1">
                         <p class="font-medium text-sm text-gray-400 self-start ">BUTS ENCAISSÈS</p>
-                        <p class="text-3xl font-bold text-gray-50">5</p>
+                        <p class="text-3xl font-bold text-gray-50" id="scorclub"></p>
                     </article>
                 </div>
                 <div class="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mr-6 flex gap-2">

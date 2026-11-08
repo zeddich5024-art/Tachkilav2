@@ -124,6 +124,7 @@ function affichermatch(){
     const resultat=document.createElement("p");
     resultat.className="text-3xl font-semibold bg-gray-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
     
+    
     const actions = document.createElement("div");
     actions.className="flex gap-4"
     
@@ -173,6 +174,8 @@ function affichermatch(){
         Matchs.splice(index,1);
         cartematch.remove();
         localStorage.setItem("Matchs",JSON.stringify(Matchs));
+        résulte();
+        score();
     })
     
     saisirscore.addEventListener("click",()=>{
@@ -221,6 +224,8 @@ formscore.addEventListener("submit",(e)=>{
     saisiscore.classList.add("hidden");
     formscore.reset();
     matchSelectionne=null;
+    résulte();
+    score();
     affichermatch();
     
 })
@@ -233,5 +238,58 @@ const estPassee =(match)=>{
     }
     return dateHeure.getTime()<=maintenant;
 };
+function résulte(){
+    let victoire=0;
+    let nuls=0;
+    let defaite=0;
+    Matchs.forEach((match)=>{
+        if(match.scorAtlas === "" || match.scorclub === "") return;
+        else if(Number(match.scorAtlas) > Number(match.scorclub)){
+             victoire++;
+             console.log("victoire");
+        }
+        else if(Number(match.scorAtlas) == Number(match.scorclub)){
+             nuls++;
+             console.log("nuls");
+        }
+        else{
+             defaite++;
+             console.log("defaite")
+        }
+    })
+    const nombrevictoire=document.querySelector("#nombre-victoires");
+    nombrevictoire.textContent=victoire;
+    const nombrenuls=document.querySelector("#nombre-nuls");
+    nombrenuls.textContent=nuls;
+    const nombredefaite=document.querySelector("#nombre-defaites");
+    nombredefaite.textContent=defaite;
+}
+function score(){
+    let ScorAtlas=0;
+    let ScorClub=0;
+    Matchs.forEach((match)=>{
+        if(match.scorAtlas === "" || match.scorclub === "") return;
+        else{
+            ScorAtlas = ScorAtlas + Number(match.scorAtlas);
+            ScorClub =ScorClub + Number(match.scorclub);
+        }
+    })
+    const scoratlas=document.querySelector("#scoratlas")
+    scoratlas.textContent=ScorAtlas;
+    const scorclub=document.querySelector("#scorclub")
+    scorclub.textContent=ScorClub
+}
+
+
+
+
+
+
+
+
+
+
 
  affichermatch();
+ résulte();
+ score();
