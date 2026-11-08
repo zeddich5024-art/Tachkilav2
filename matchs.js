@@ -41,8 +41,23 @@ formmatch.addEventListener("submit",(e)=>{
     // Validation de formulaire de match
     validationformmatch(errorNomÈquipe,errorTimematch,DateMatch,errorDatematch,errorLieumatch,nom,hours,lieuMatch,Lieu,errorLieu)
     
+    if(editingId !== null){
 
-    const match={
+    const matchModifier = Matchs.find(m => m.id === editingId);
+
+    matchModifier.nomadverse = nom;
+    matchModifier.lieuMatch = lieuMatch;
+    matchModifier.date = DateMatch;
+    matchModifier.mois = Mois;
+    matchModifier.jour = Jour;
+    matchModifier.jourNb = JourNb;
+    matchModifier.hours = hours;
+    matchModifier.lieu = Lieu.value;
+
+    editingId = null;
+
+   }else{
+   const match={
         id:idmatch,
         noméquipe:"Atlas FC",
         nomadverse:nom,
@@ -57,8 +72,10 @@ formmatch.addEventListener("submit",(e)=>{
         scorclub:""
     }
     Matchs.push(match);
-    localStorage.setItem("Matchs",JSON.stringify(Matchs));
     idmatch++;
+    }
+    localStorage.setItem("Matchs",JSON.stringify(Matchs));
+    
     affichermatch()
     console.log(Matchs)
     formmatch.reset();
@@ -66,7 +83,9 @@ formmatch.addEventListener("submit",(e)=>{
 })
 const saisiscore=document.querySelector("#modifier-score");
 const nomclub=document.querySelector("#nomclub");
+const formscore=document.querySelector("#formscore")
 let matchSelectionne=null;
+let editingId = null;
 function affichermatch(){
     container.innerHTML="";
     Matchs.forEach(match=>{
@@ -158,12 +177,30 @@ function affichermatch(){
         atlas.value="";
         club.value="";
     });
+    const btnModifier = document.createElement("button");
+        btnModifier.className = "text-orange-600 hover:text-blue-600 cursor-pointer";
+        btnModifier.innerHTML = '<i class="fa-solid fa-pen"></i>';
+        btnModifier.title = "Modifier";
+    btnModifier.addEventListener("click", ()=>{
+    editingId = match.id;
+    nomÈquipe.value = match.nomadverse;
+    lieumatch.value = match.lieuMatch;
+    datematch.value = match.date;
+    Timematch.value = match.hours;
+    const radio = document.querySelector(
+        `input[name="Lieu"][value="${match.lieu}"]`
+    );
+    if(radio){
+        radio.checked = true;
+    }
+    form.classList.remove("hidden");
+    });
     
 
     dateMatch.append(jourstring,journombre,moisstring,hoursMatch);
     informationMatch.append(lieu,nomMatch,lieuMatch);
     linge1.append(dateMatch,informationMatch)
-    actions.append(btnSupprimer)
+    actions.append(btnModifier,btnSupprimer)
     
     linge2.append(resul,actions)
     cartematch.append(linge1,linge2);
