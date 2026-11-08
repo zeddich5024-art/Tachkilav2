@@ -87,9 +87,9 @@ const formscore=document.querySelector("#formscore")
 let matchSelectionne=null;
 let editingId = null;
 
-function affichermatch(){
+function affichermatch(listeMatchs = Matchs){
     container.innerHTML="";
-    Matchs.forEach(match=>{
+    listeMatchs.forEach(match=>{
     const cartematch=document.createElement("div");
     cartematch.className="border-1 border-gray-950 rounded-lg p-3 pt-6 bg-slate-400/20 ml-6 mt-2 mr-6 flex justify-between px-6";
     const linge1=document.createElement("div");
@@ -113,6 +113,9 @@ function affichermatch(){
     const lieu=document.createElement("p")
     lieu.className="px-1 bg-green-500/30 w-18 shadow-xl/30 text-green-500 rounded-sm";
     lieu.textContent=match.lieu;
+    if(match.lieu === "Extérieur"){
+        lieu.className="px-1 bg-gray-500/30 w-18 shadow-xl/30 text-gray-500 rounded-sm";
+    }
     const nomMatch=document.createElement("div");
     nomMatch.className="text-lg font-semibold text-gray-50 mt-2"
     nomMatch.innerHTML=`${match.noméquipe} vs ${match.nomadverse}`;
@@ -123,7 +126,14 @@ function affichermatch(){
     linge2.className="flex gap-2"
     const resultat=document.createElement("p");
     resultat.className="text-3xl font-semibold bg-gray-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
-    
+        if(Number(match.scorAtlas) > Number(match.scorclub)){
+             resultat.className="text-3xl text-green-500 font-semibold bg-green-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
+        }
+        else if(Number(match.scorAtlas) == Number(match.scorclub)){
+            resultat.className="text-3xl text-gray-500 font-semibold bg-gray-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";}
+        else if(Number(match.scorAtlas) < Number(match.scorclub)){
+              resultat.className="text-3xl text-red-500 font-semibold bg-red-500/50 shadow-xl/30 self-center px-2 rounded-lg mr-6 ";
+        }
     
     const actions = document.createElement("div");
     actions.className="flex gap-4"
@@ -280,10 +290,32 @@ function score(){
     scorclub.textContent=ScorClub
 }
 
+const Tous = document.querySelector("#Tous");
+const avenir = document.querySelector("#avenir");
+const joues = document.querySelector("#joues");
+// Tous les matchs
+Tous.addEventListener("click", () => {
+    affichermatch(Matchs);
+});
+// Matchs à venir
+avenir.addEventListener("click", () => {
+    const matchsAvenir = Matchs.filter(match => !estPassee(match));
+    affichermatch(matchsAvenir);
+});
+// Matchs joués
+joues.addEventListener("click", () => {
+    const matchsJoues = Matchs.filter(match => estPassee(match));
+    affichermatch(matchsJoues);
+});
 
-
-
-
+const searchtext = document.querySelector("#text-search");
+searchtext.addEventListener("input", function(){
+    let searchValue = this.value.toLowerCase();
+    let filteredMatchs = Matchs.filter(match =>
+        match.nomadverse.toLowerCase().includes(searchValue)
+    );
+    affichermatch(filteredMatchs);
+});
 
 
 
